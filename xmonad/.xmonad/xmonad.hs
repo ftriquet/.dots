@@ -9,6 +9,8 @@ import XMonad.Layout.Tabbed
 import XMonad.Layout.Spacing
 import XMonad.Layout.Gaps
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.Combo
+import XMonad.Layout.TwoPane
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.EwmhDesktops
@@ -202,7 +204,8 @@ myTabConf = def { activeColor = "#458588"
 
 withGaps layout = spacing 10 $ gaps [(U, 5), (R, 5), (L, 5), (D, 5)] $ layout
 
-myLayout = avoidStruts $ smartBorders (tall ||| grid ||| Full ||| tabbed shrinkText myTabConf)
+myLayout = avoidStruts $ smartBorders (tall ||| grid ||| Full ||| tabbed shrinkText myTabConf |||
+    combineTwo (TwoPane 0.03 0.5) (tabbed shrinkText myTabConf) (Tall nmaster delta masterRatio))
     where
      nmaster = 1
      masterRatio = 1/2
