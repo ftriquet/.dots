@@ -3,29 +3,15 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run
 import XMonad.Util.EZConfig
-import XMonad.Actions.CycleWS
-import XMonad.Layout.Maximize
 import XMonad.Layout.NoBorders
-import XMonad.Layout.Minimize
 import XMonad.Layout.Grid
-import XMonad.Layout.SimpleFloat
 import XMonad.Layout.Tabbed
 import XMonad.Layout.Spacing
 import XMonad.Layout.Gaps
-import XMonad.Util.Themes
-import XMonad.Layout.Cross
-import XMonad.Layout.ThreeColumns
-import XMonad.Layout.Circle
-import XMonad.Layout.SimpleFloat
+import XMonad.Layout.ResizableTile
 import XMonad.Hooks.ManageHelpers
-import XMonad.Actions.UpdatePointer
-import XMonad.Actions.GridSelect
 import XMonad.Hooks.SetWMName
-import XMonad.Util.WorkspaceCompare
-import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.FadeWindows
-import Graphics.X11.ExtraTypes.XF86
 import System.IO
 import Data.Monoid
 import System.Exit
@@ -133,6 +119,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Expand the master area
     , ((modm,               xK_l     ), sendMessage Expand)
 
+    -- Shrink current window height
+    , ((modm,               xK_w    ), sendMessage MirrorShrink)
+
+    -- Expand current window height
+    , ((modm,               xK_c    ), sendMessage MirrorExpand)
+
     -- Push window back into tiling
     , ((controlMask .|. shiftMask,   xK_t     ), withFocused $ windows . W.sink)
 
@@ -216,7 +208,7 @@ myLayout = avoidStruts $ smartBorders (tall ||| grid ||| Full ||| tabbed shrinkT
      masterRatio = 1/2
      delta = 3/100
      gridRatio = (4/3)
-     tall = withGaps (Tall nmaster delta masterRatio)
+     tall = withGaps (ResizableTall nmaster delta masterRatio [])
      grid = withGaps (GridRatio gridRatio)
 
 ------------------------------------------------------------------------
