@@ -48,8 +48,24 @@ myBorderWidth   = 3
 
 myModMask       = mod1Mask
 
+xmobarEscape :: String -> String
+xmobarEscape = concatMap doubleLts
+    where doubleLts '<' = "<<"
+          doubleLts x   = [x]
+
 myWorkspaces :: [String]
-myWorkspaces = ["7", "5", "3", "1", "9", "0", "2", "4", "6"]
+myWorkspaces = map clickable [ ("bracketleft", "7")
+                             , ("braceleft", "5")
+                             , ("braceright", "3")
+                             , ("parenleft", "1")
+                             , ("equal", "9")
+                             , ("asterisk", "0")
+                             , ("parenright", "2")
+                             , ("plus", "4")
+                             , ("bracketright", "6")
+                             ]
+    where clickable (key, ws) = "<action=`xdotool key alt+" ++ key ++ "`>" ++ ws ++ "</action>"
+
 myNumRow = [ xK_bracketleft
            , xK_braceleft
            , xK_braceright
@@ -59,7 +75,7 @@ myNumRow = [ xK_bracketleft
            , xK_parenright
            , xK_plus
            , xK_bracketright
-           , xK_exclam ]
+           ]
 
 myNormalBorderColor  = "#282828"
 myFocusedBorderColor = "#458588"
