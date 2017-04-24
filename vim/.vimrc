@@ -49,10 +49,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'guns/vim-sexp'
-Plugin 'w0rp/ale'
-Plugin 'godlygeek/tabular'
 
 " The prophet
 Plugin 'tpope/vim-endwise'
@@ -65,27 +61,32 @@ Plugin 'tpope/vim-commentary'
 " Snippets
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'fatih/vim-go'
+
 " Misc
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'pangloss/vim-javascript'
 Plugin 'majutsushi/tagbar'
-Plugin 'rust-lang/rust.vim'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'mattn/vim-maketable'
 Plugin 'mhartington/oceanic-next'
-Plugin 'racer-rust/vim-racer'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'guns/vim-sexp'
+Plugin 'w0rp/ale'
+Plugin 'godlygeek/tabular'
 
-" Typescript
+" Languages
+""" Typescript
 Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'Shougo/vimproc.vim'
+"" Haskell
 Plugin 'itchyny/vim-haskell-indent'
-
-Plugin 'arcticicestudio/nord-vim'
-Plugin 'KeitaNakamura/neodark.vim'
+"" Rust
+Plugin 'racer-rust/vim-racer'
+Plugin 'rust-lang/rust.vim'
+"" Go
+Plugin 'fatih/vim-go'
+"" JS
+Plugin 'pangloss/vim-javascript'
 
 nnoremap <C-t> :TagbarToggle<CR>
 
