@@ -81,7 +81,7 @@ LOCAL_PATH="$HOME/.local/bin"
 CARGO_PATH="$HOME/.cargo/bin"
 export RUST_SRC_PATH=~/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 
-export PATH="$CARGO_PATH:$LOCAL_PATH:$GOPATH/bin:$GEMS_PATH:$HOME_PATH:$PATH"
+export PATH="$CARGO_PATH:$LOCAL_PATH:$GOPATH/bin:$GEMS_PATH:$HOME/.bin:$HOME_PATH:$PATH"
 
 # rename tab titles in terminator
 rename-tab() {
