@@ -1,0 +1,42 @@
+[options]
+font = Iosevka Term 13
+scrollback_lines = 10000
+clickable_url = true
+cursor_shape = ibeam
+
+[colors]
+foreground = #EBDBB2
+background = #1D2021
+foreground_bold = #EBDBB2
+
+# dark0 + gray
+color0 = #282828
+color8 = #928374
+
+# neutral_red + bright_red
+color1 = #CC241D
+color9 = #FB4934
+
+# neutral_green + bright_green
+color2 = #98971A
+color10 = #B8BB26
+
+# neutral_yellow + bright_yellow
+color3 = #D79921
+color11 = #FABD2F
+
+# neutral_blue + bright_blue
+color4 = #458588
+color12 = #83A598
+
+# neutral_purple + bright_purple
+color5 = #B16286
+color13 = #D3869B
+
+# neutral_aqua + faded_aqua
+color6 = #689D6A
+color14 = #8EC07C
+
+# light4 + light1
+color7 = #A89984
+color15 = #EBDBB2
