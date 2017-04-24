@@ -70,7 +70,7 @@ GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWCOLORHINTS=1
-source $HOME/dotfiles/git-prompt.sh
+source $HOME/.dots/git-prompt.sh
 precmd () { __git_ps1 "
 [%{$fg[blue]%}%3~%{$reset_color%}" "%{$reset_color%}] %# " " %s "
 }
