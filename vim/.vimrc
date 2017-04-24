@@ -185,6 +185,7 @@ let g:go_highlight_build_constraints = 1
 let g:go_fmt_autosave = 1
 
 
+set laststatus=2
 if has("statusline")
 	set statusline =          " clear
 	set statusline+=%02n      " leading zero 2 digit buffer number
