@@ -189,6 +189,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 myTabConf = def { activeColor = "#458588"
                 , inactiveColor = "#1D2021"
+                , fontName = "xft:Iosevka:size=10"
                 }
 
 withGaps layout = spacing 10 $ gaps [(U, 5), (R, 5), (L, 5), (D, 5)] $ layout
