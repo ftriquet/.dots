@@ -88,6 +88,8 @@ Plugin 'fatih/vim-go'
 "" JS
 Plugin 'pangloss/vim-javascript'
 
+Plugin 'arcticicestudio/nord-vim'
+
 nnoremap <C-t> :TagbarToggle<CR>
 
 call vundle#end()
