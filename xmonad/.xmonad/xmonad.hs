@@ -244,16 +244,19 @@ myLogHook xmproc = dynamicLogWithPP xmobarPP
                      , ppHidden = xmobarColor "#c0c5ce" ""
                      , ppHiddenNoWindows = xmobarColor "#4f5b66" ""
                      , ppUrgent = xmobarColor "#1D2021" "#fb4934"
-                     , ppLayout = xmobarColor "#ebdbb2" ""
+                     , ppLayout = xmobarColor "#ebdbb2" "" . wrap "[" "]"
                      , ppTitle =  xmobarColor "#ebdbb2" "" . shorten 80
-                     , ppSep = xmobarColor "#ebdbb2" "" " | "
+                     , ppSep = xmobarColor "#ebdbb2" "" "  "
                      }
 
 
 ------------------------------------------------------------------------
 -- Startup hook
 
-myStartupHook = setWMName "LG3D"
+myStartupHook = do
+    setWMName "LG3D"
+    spawn "start-trayer.sh"
+    spawn "feh --bg-tile /home/francois/Pictures/nami.png"
 
 ------------------------------------------------------------------------
 myConfig xmproc = (defaults xmproc) `additionalKeysP` addKeys
