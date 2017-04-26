@@ -18,7 +18,6 @@ BLURTYPE="0x5" # 7.52s
 # Get the screenshot, add the blur and lock the screen with it
 $SCREENSHOT
 convert $IMAGE -blur $BLURTYPE $IMAGE
-convert $IMAGE /home/francois/meeseeks.jpg -gravity east -composite -matte $IMAGE
 convert $IMAGE /home/francois/rick.png -gravity west -composite -matte $IMAGE
 
 #IMAGE='/home/francois/Pictures/one_plus_3.png'

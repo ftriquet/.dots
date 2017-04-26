@@ -78,6 +78,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'Shougo/vimproc'
 "" Haskell
 Plugin 'itchyny/vim-haskell-indent'
 "" Rust

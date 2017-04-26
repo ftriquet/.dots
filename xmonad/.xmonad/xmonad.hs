@@ -94,11 +94,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_Tab   ), windows W.focusDown)
 
     -- Move focus to the next window
-    , ((modm,               xK_j     ), windows W.focusDown)
     , ((modm,               xK_t     ), windows W.focusDown)
 
     -- Move focus to the previous window
-    , ((modm,               xK_k     ), windows W.focusUp  )
     , ((modm,               xK_n     ), windows W.focusUp  )
 
     -- Move focus to the master window
@@ -122,10 +120,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_l     ), sendMessage Expand)
 
     -- Shrink current window height
-    , ((modm,               xK_w    ), sendMessage MirrorShrink)
+    , ((modm,               xK_Down  ), sendMessage MirrorShrink)
 
     -- Expand current window height
-    , ((modm,               xK_c    ), sendMessage MirrorExpand)
+    , ((modm,               xK_Up    ), sendMessage MirrorExpand)
 
     -- Push window back into tiling
     , ((controlMask .|. shiftMask,   xK_t     ), withFocused $ windows . W.sink)
@@ -205,7 +203,7 @@ myTabConf = def { activeColor = "#458588"
 withGaps layout = spacing 10 $ gaps [(U, 5), (R, 5), (L, 5), (D, 5)] $ layout
 
 myLayout = avoidStruts $ smartBorders (tall ||| grid ||| Full ||| tabbed shrinkText myTabConf |||
-    combineTwo (TwoPane 0.03 0.5) (tabbed shrinkText myTabConf) (Tall nmaster delta masterRatio))
+    combineTwo (TwoPane 0.03 0.5) (tabbed shrinkText myTabConf) (tall))
     where
      nmaster = 1
      masterRatio = 1/2

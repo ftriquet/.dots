@@ -1,5 +1,5 @@
 [options]
-font = Iosevka Term 13
+font = Iosevka Term 12
 scrollback_lines = 10000
 clickable_url = true
 cursor_shape = ibeam
