@@ -1,7 +1,7 @@
 
 Config {
    -- appearance
-     font =         "xft:Iosevka:size=10.5"
+     font =         "xft:Iosevka:size=9"
    , bgColor =      "#1D2021"
    , fgColor =      "#ebdbb2"
    , position =     TopW L 95 H 25
