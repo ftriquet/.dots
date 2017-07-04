@@ -90,6 +90,8 @@ Plugin 'fatih/vim-go'
 "" JS
 Plugin 'pangloss/vim-javascript'
 
+Plugin 'KeitaNakamura/neodark.vim'
+
 nnoremap <C-t> :TagbarToggle<CR>
 
 call vundle#end()
@@ -172,7 +174,7 @@ set background=dark
 let g:gruvbox_bold=1
 let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark = 'hard'
-colorscheme base16-tomorrow-night
+colorscheme gruvbox
 
 " hi Normal ctermbg=NONE
 
