@@ -62,7 +62,7 @@ autoload -U zmv
 
 export RPROMPT='%(1j.%j.)'
 
-GEMS_PATH="$HOME/.gem/ruby/2.3.0/bin"
+GEMS_PATH="$HOME/.gem/ruby/2.4.0/bin"
 HOME_PATH="$HOME/bin/"
 
 GIT_PS1_SHOWUPSTREAM='verbose name legacy git'
@@ -72,7 +72,7 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWCOLORHINTS=1
 source $HOME/.dots/git-prompt.sh
 precmd () { __git_ps1 "
-[%{$fg[blue]%}%3~%{$reset_color%}" "%{$reset_color%}] %# " " %s "
+[ %{$fg[blue]%}%3~%{$reset_color%}" "%{$reset_color%}] %# " " %s "
 }
 
 export GOPATH="$HOME/dev/go"
@@ -105,9 +105,11 @@ alias infra-run='ansible-playbook -i inventory/static_inventory'
 
 alias -s 'log=tail -f'
 
-source $HOME/dotfiles/z.sh
-
 notif() {
 	$@
 	notify-send "command terminated: $@"
+}
+
+list() {
+	rg $@ | cut -d ':' -f1 | sort | uniq
 }

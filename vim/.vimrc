@@ -49,6 +49,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'jacoborus/tender.vim'
 
 " The prophet
 Plugin 'tpope/vim-endwise'
@@ -89,11 +90,11 @@ Plugin 'fatih/vim-go'
 "" JS
 Plugin 'pangloss/vim-javascript'
 
-Plugin 'arcticicestudio/nord-vim'
-
 nnoremap <C-t> :TagbarToggle<CR>
 
 call vundle#end()
+
+let g:javascript_plugin_flow = 1
 
 function! <SID>SynStack()
 	if !exists("*synstack")
@@ -153,8 +154,15 @@ cnoreabbrev WQ wq
 cnoreabbrev Q q
 cnoreabbrev Qa! qa!
 
+augroup templates
+	autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+	autocmd BufNewFile *.py 0r ~/.vim/templates/skeleton.py
+	autocmd BufNewFile *.rb 0r ~/.vim/templates/skeleton.rb
+augroup END
+
 augroup filetypedetect
 	au BufRead,BufNewFile,BufWinEnter *.ts set filetype=typescript
+	au BufWritePost *.ts TsuGeterr
 augroup END
 
 
@@ -164,7 +172,7 @@ set background=dark
 let g:gruvbox_bold=1
 let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
+colorscheme base16-tomorrow-night
 
 " hi Normal ctermbg=NONE
 
@@ -203,6 +211,7 @@ if has("statusline")
 	set statusline+=\ %p%%    " percent of file
 	set statusline+=%{&paste?'=':'\ '}
 	set statusline+=%{&wrap?'<':'>'}
+	set statusline+=%{ALEGetStatusLine()}
 endif
 
 let g:multi_cursor_next_key='<C-c>'
@@ -237,10 +246,15 @@ if !exists("g:ycm_semantic_triggers")
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
 
+let g:ycm_rust_src_path = '/home/francois/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+
 let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_save = 1
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+let g:ale_liters = {'rust': ['cargo']}
+let g:ale_cargo_use_check = 1
+let g:ale_python_mypy_options = '--ignore-missing-imports'

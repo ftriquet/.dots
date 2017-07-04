@@ -5,9 +5,9 @@ iwconfig wlp3s0 2>&1 | grep -q no\ wireless\ extensions\. && {
   exit 0
 }
 
-essid=`iwconfig wlp3s0 | awk -F '"' '/ESSID/ {print $2}'`
-stngth=`iwconfig wlp3s0 | awk -F '=' '/Quality/ {print $2}' | cut -d '/' -f 1`
-bars=`expr $stngth / 10`
+essid=$(iwconfig wlp3s0 | awk -F '"' '/ESSID/ {print $2}')
+stngth=$(iwconfig wlp3s0 | awk -F '=' '/Quality/ {print $2}' | cut -d '/' -f 1)
+bars=$((stngth / 10))
 
 case $bars in
   0)  bar='[----------]' ;;
@@ -24,6 +24,6 @@ case $bars in
   *)  bar='[----!!----]' ;;
 esac
 
-echo $essid $bar
+echo "$essid $bar"
 
 exit 0

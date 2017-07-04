@@ -3,6 +3,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run
 import XMonad.Util.EZConfig
+import XMonad.Util.NamedScratchpad
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Grid
 import XMonad.Layout.Tabbed
@@ -32,14 +33,18 @@ myFocusFollowsMouse= True
 myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
+
+black = "#181818"
+red = "#ab4642"
+green = "#a1b56c"
+blue = "#7cafc2"
+white = "#d8d8d8"
+
+myNormalBorderColor  = black
 myBorderWidth   = 3
+myFocusedBorderColor = red
 
 myModMask       = mod1Mask
-
-xmobarEscape :: String -> String
-xmobarEscape = concatMap doubleLts
-    where doubleLts '<' = "<<"
-          doubleLts x   = [x]
 
 myWorkspaces :: [String]
 myWorkspaces = map clickable [ ("bracketleft", "7")
@@ -65,8 +70,6 @@ myNumRow = [ xK_bracketleft
            , xK_bracketright
            ]
 
-myNormalBorderColor  = "#282828"
-myFocusedBorderColor = "#458588"
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch a terminal
@@ -139,6 +142,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Restart xmonad
     , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
+
+    , ((modm              , xK_f      ), namedScratchpadAction myScratchpads "music")
     ]
     ++
 
@@ -202,8 +207,7 @@ myTabConf = def { activeColor = "#458588"
 
 withGaps layout = spacing 10 $ gaps [(U, 5), (R, 5), (L, 5), (D, 5)] $ layout
 
-myLayout = avoidStruts $ smartBorders (tall ||| grid ||| Full ||| tabbed shrinkText myTabConf |||
-    combineTwo (TwoPane 0.03 0.5) (tabbed shrinkText myTabConf) (tall))
+myLayout = avoidStruts $ smartBorders (tall ||| grid ||| Full ||| tabbed shrinkText myTabConf)
     where
      nmaster = 1
      masterRatio = 1/2
@@ -215,12 +219,28 @@ myLayout = avoidStruts $ smartBorders (tall ||| grid ||| Full ||| tabbed shrinkT
 ------------------------------------------------------------------------
 -- Window rules:
 
+myScratchpads = [ NS "music" spawnTerm findTerm manageTerm ]
+    where
+        h           = 0.6
+        w           = 0.6
+        t           = (1 - h) / 2
+        l           = (1 - w) / 2
+        spawnTerm   = "termite -t scratchpad-term"
+        findTerm   = title =? "scratchpad-term"
+        manageTerm = customFloating $ W.RationalRect l t w h
+
+manageScratchpad :: ManageHook
+manageScratchpad = namedScratchpadManageHook myScratchpads
+
 myManageHook = composeAll
-    [ className =? "Pcmanfm"        --> doFloat
-    , resource  =? "desktop_window" --> doIgnore
-    , className =? "Xmessage"       --> doFloat
+    [ className =? "Pcmanfm"                      --> doFloat
+    , className =? "Nemo"                         --> doFloat
+    , resource  =? "desktop_window"               --> doIgnore
+    , className =? "Xmessage"                     --> doFloat
+    , stringProperty "WM_WINDOW_ROLE" =? "pop-up" --> doFloat
     ]
     <+> (isFullscreen --> doFullFloat)
+    <+> manageScratchpad
     <+> manageDocks
 
 ------------------------------------------------------------------------
@@ -233,13 +253,13 @@ myEventHook = docksEventHook <+> fullscreenEventHook
 
 myLogHook xmproc = dynamicLogWithPP xmobarPP
                      { ppOutput = hPutStrLn xmproc
-                     , ppCurrent = xmobarColor "#fb4934" ""
+                     , ppCurrent = xmobarColor "#fb4934" "" . wrap "<" ">"
                      , ppHidden = xmobarColor "#c0c5ce" ""
                      , ppHiddenNoWindows = xmobarColor "#4f5b66" ""
-                     , ppUrgent = xmobarColor "#1D2021" "#fb4934"
-                     , ppLayout = xmobarColor "#ebdbb2" "" . wrap "[" "]"
-                     , ppTitle =  xmobarColor "#ebdbb2" "" . shorten 80
-                     , ppSep = xmobarColor "#ebdbb2" "" "  "
+                     , ppUrgent = xmobarColor black "#fb4934"
+                     , ppLayout = xmobarColor white "" . wrap "[" "]"
+                     , ppTitle =  xmobarColor white "" . shorten 80
+                     , ppSep = xmobarColor white "" "  "
                      }
 
 
@@ -249,7 +269,7 @@ myLogHook xmproc = dynamicLogWithPP xmobarPP
 myStartupHook = do
     setWMName "LG3D"
     spawn "start-trayer.sh"
-    spawn "feh --bg-tile /home/francois/Pictures/nami.png"
+    spawn "feh --bg-scale /home/francois/Pictures/RaM-Arc-En-Ciel.jpg"
 
 ------------------------------------------------------------------------
 myConfig xmproc = (defaults xmproc) `additionalKeysP` addKeys
