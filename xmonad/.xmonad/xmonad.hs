@@ -237,6 +237,7 @@ myManageHook = composeAll
     , className =? "Nemo"                         --> doFloat
     , resource  =? "desktop_window"               --> doIgnore
     , className =? "Xmessage"                     --> doFloat
+    , className =? "Gimp"                         --> doFloat
     , stringProperty "WM_WINDOW_ROLE" =? "pop-up" --> doFloat
     ]
     <+> (isFullscreen --> doFullFloat)

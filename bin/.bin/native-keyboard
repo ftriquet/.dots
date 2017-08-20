@@ -1,0 +1,9 @@
+#!/bin/bash
+
+id=$(xinput list | awk -F = '/AT Translated/{print $2}' | cut -d '	' -f1)
+
+if [[ "${1}" = "disable" ]]; then
+	xinput float "${id}"
+else
+	xinput reattach "${id}" 3
+fi

@@ -10,7 +10,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%UnsafeStdinReader% }{ %battery% | %multicpu% | %memory% | %volume% | %wifi% | %date% || %kbd% "
+   , template = "%UnsafeStdinReader% }{ %music% | %battery% | %multicpu% | %memory% | %volume% | %wifi% | %date% || %kbd% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -36,6 +36,8 @@ Config {
    --   see http://projects.haskell.org/xmobar/#system-monitor-plugins.
    , commands =
         [ Run Com "wireless.sh" [] "wifi" 10
+
+		, Run Com "music-info.sh" [] "music" 2
 
 		, Run Com "get-volume.sh" [] "volume" 10
 

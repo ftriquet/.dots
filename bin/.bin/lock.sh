@@ -19,6 +19,7 @@ BLURTYPE="5x2" # 3.80s
 $SCREENSHOT
 # convert $IMAGE -rotate 180 -noise $BLURTYPE $IMAGE
 convert $IMAGE -blur $BLURTYPE $IMAGE
+# convert $IMAGE /home/francois/rick.png -gravity east -composite -matte $IMAGE
 convert $IMAGE /home/francois/rick.png -gravity east -composite -matte $IMAGE
 
 #IMAGE='/home/francois/Pictures/one_plus_3.png'

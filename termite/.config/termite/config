@@ -1,6 +1,6 @@
 [options]
 font = Tamsyn 12
-font = Iosevka Term 10
+font = Iosevka Term 11
 scrollback_lines = 10000
 clickable_url = true
 cursor_shape = ibeam

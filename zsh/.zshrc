@@ -113,3 +113,7 @@ notif() {
 list() {
 	rg $@ | cut -d ':' -f1 | sort | uniq
 }
+
+man2pdf() {
+	man -t "$1" | ps2pdf - > "$2"
+}

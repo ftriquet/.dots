@@ -18,6 +18,7 @@ autocmd FileType python set tabstop=2 softtabstop=2 expandtab shiftwidth=2 nosma
 autocmd FileType eruby set tabstop=2 softtabstop=2 expandtab shiftwidth=2 nosmarttab
 autocmd FileType yaml set tabstop=2 softtabstop=2 expandtab shiftwidth=2 nosmarttab
 autocmd FileType haskell set tabstop=4 softtabstop=4 expandtab shiftwidth=4 nosmarttab shiftround
+autocmd FileType typescript set tabstop=2 softtabstop=2 expandtab shiftwidth=2 nosmarttab shiftround
 
 set hidden
 
@@ -58,6 +59,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-rails'
 
 " Snippets
 Plugin 'SirVer/ultisnips'
@@ -159,7 +161,7 @@ cnoreabbrev Qa! qa!
 augroup templates
 	autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
 	autocmd BufNewFile *.py 0r ~/.vim/templates/skeleton.py
-	autocmd BufNewFile *.rb 0r ~/.vim/templates/skeleton.rb
+	" autocmd BufNewFile *.rb 0r ~/.vim/templates/skeleton.rb
 augroup END
 
 augroup filetypedetect
