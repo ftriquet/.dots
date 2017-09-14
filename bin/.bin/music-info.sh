@@ -1,5 +1,5 @@
 #!/bin/bash
-[[ $(playerctl status 2>&-) ]] || exit
+[[ $(playerctl status 2>&-) ]] || exit 0
 
 status=$(playerctl status)
 artist=$(playerctl metadata artist)

@@ -35,12 +35,13 @@ myClickJustFocuses = False
 
 
 black = "#181818"
+background = "#1D2021"
 red = "#ab4642"
 green = "#a1b56c"
 blue = "#7cafc2"
 white = "#d8d8d8"
 
-myNormalBorderColor  = black
+myNormalBorderColor = background
 myBorderWidth   = 3
 myFocusedBorderColor = red
 
@@ -270,7 +271,7 @@ myLogHook xmproc = dynamicLogWithPP xmobarPP
 myStartupHook = do
     setWMName "LG3D"
     spawn "start-trayer.sh"
-    spawn "feh --bg-scale /home/francois/Pictures/RaM-Arc-En-Ciel.jpg"
+    spawn "feh --bg-scale /home/francois/Pictures/1D2021.png"
 
 ------------------------------------------------------------------------
 myConfig xmproc = (defaults xmproc) `additionalKeysP` addKeys

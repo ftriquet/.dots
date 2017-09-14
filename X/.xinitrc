@@ -6,10 +6,11 @@ setxkbmap us dvp
 numlockx on
 synclient TapButton1=1
 synclient TapButton2=3
-xautolock -time 5 -locker '/home/francois/.bin/lock.sh' &
+xautolock -time 5 -notify 20 -locker '/home/francois/.bin/lock.sh' &
 nm-applet &
 dunst &
 compton &
 
+rm "${HOME}/.xmonad/xmonad.state"
 exec xmonad
 #exec cinnamon-session

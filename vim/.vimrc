@@ -1,4 +1,10 @@
 set nocompatible
+
+set guifont=Iosevka\ 11
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+set guicursor="a:ver35-Cursor"
 filetype off
 filetype plugin indent on
 set smartindent
@@ -8,7 +14,7 @@ set tabstop=4
 set shiftwidth=4
 set noexpandtab
 set number
-set cursorline
+" set cursorline
 set termguicolors
 set scrolloff=3
 
@@ -50,7 +56,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'jacoborus/tender.vim'
 
 " The prophet
 Plugin 'tpope/vim-endwise'
@@ -70,7 +75,6 @@ Plugin 'justinmk/vim-syntax-extra'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'mhartington/oceanic-next'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'guns/vim-sexp'
 Plugin 'w0rp/ale'
@@ -92,7 +96,12 @@ Plugin 'fatih/vim-go'
 "" JS
 Plugin 'pangloss/vim-javascript'
 
+" Themes
+Plugin 'mhartington/oceanic-next'
 Plugin 'KeitaNakamura/neodark.vim'
+Plugin 'jacoborus/tender.vim'
+Plugin 'ajh17/Spacegray.vim'
+Plugin 'AlessandroYorba/Alduin'
 
 nnoremap <C-t> :TagbarToggle<CR>
 
@@ -176,7 +185,8 @@ set background=dark
 let g:gruvbox_bold=1
 let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
+let g:alduin_Shout_Contract_Vampirism=1
+colorscheme alduin
 
 " hi Normal ctermbg=NONE
 
@@ -223,14 +233,9 @@ let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsJumpBackwardTrigger="<s-<tab>>"
-
-" If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -259,6 +264,12 @@ let g:ale_lint_on_save = 1
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-let g:ale_liters = {'rust': ['cargo']}
+let g:ale_linters = {'rust': ['cargo']}
 let g:ale_cargo_use_check = 1
 let g:ale_python_mypy_options = '--ignore-missing-imports'
+
+" Auto close quickfix buffer when it's the last open buffer
+aug QFClose
+  au!
+  au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+aug END
