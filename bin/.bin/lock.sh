@@ -18,9 +18,9 @@ BLURTYPE="5x2" # 3.80s
 # Get the screenshot, add the blur and lock the screen with it
 $SCREENSHOT
 # convert $IMAGE -rotate 180 -noise $BLURTYPE $IMAGE
-convert $IMAGE -blur $BLURTYPE $IMAGE
-convert $IMAGE /home/francois/morty.png -gravity north -composite -matte $IMAGE
-convert $IMAGE /home/francois/rick.png -gravity south -composite -matte $IMAGE
+convert $IMAGE -blur "$BLURTYPE" -swirl 270 -noise "$BLURTYPE" $IMAGE
+# convert $IMAGE /home/francois/morty.png -gravity north -composite -matte $IMAGE
+# convert $IMAGE /home/francois/rick.png -gravity south -composite -matte $IMAGE
 
 #IMAGE='/home/francois/Pictures/one_plus_3.png'
 i3lock -u -i $IMAGE

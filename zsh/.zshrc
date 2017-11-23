@@ -50,6 +50,7 @@ alias mv='mv -v'
 alias ':q=exit'
 alias ':qa=exit'
 
+export LC_ALL=en_US.UTF-8
 
 export TERM=xterm-256color
 export TERMINAL=termite
@@ -60,28 +61,37 @@ setopt transient_rprompt		# only show the rprompt on the current prompt
 autoload -U colors && colors	# Enable colors in prompt
 autoload -U zmv
 
-export RPROMPT='%(1j.%j.)'
-
-GEMS_PATH="$HOME/.gem/ruby/2.4.0/bin"
-HOME_PATH="$HOME/bin/"
-
+source $HOME/.dots/git-prompt.sh
 GIT_PS1_SHOWUPSTREAM='verbose name legacy git'
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWCOLORHINTS=1
-source $HOME/.dots/git-prompt.sh
+
+export RPROMPT='%(1j.%j.)'
+export PROMPT='
+%F{yellow}%B%n@%m%b%f:%F{blue}%B%4~%b%f$(__git_ps1 " (%s)") %# '
+
+GEMS_PATH="$HOME/.gem/ruby/2.4.0/bin"
+HOME_PATH="$HOME/bin/"
+
 precmd () { __git_ps1 "
-[ %{$fg[blue]%}%3~%{$reset_color%}" "%{$reset_color%}] %# " " %s "
+%F{yellow}%B%n@%m%b%f:%F{blue}%B%4~%b%f" " %# " " (%s)"
 }
+
+# precmd () { __git_ps1 "
+# [ %{$fg[blue]%}%3~%{$reset_color%}" "%{$reset_color%}] %# " " %s "
+# }
 
 export GOPATH="$HOME/dev/go"
 HOME_PATH=$HOME/bin
 LOCAL_PATH="$HOME/.local/bin"
 CARGO_PATH="$HOME/.cargo/bin"
+CABAL_PATH="$HOME/.cabal/bin"
+LUA_PATH="$HOME/.luarocks/bin"
 export RUST_SRC_PATH=~/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 
-export PATH="$CARGO_PATH:$LOCAL_PATH:$GOPATH/bin:$GEMS_PATH:$HOME/.bin:$HOME_PATH:$PATH"
+export PATH="$LUA_PATH:$CABAL_PATH:$CARGO_PATH:$LOCAL_PATH:$GOPATH/bin:$GEMS_PATH:$HOME/.bin:$HOME_PATH:$PATH"
 
 # rename tab titles in terminator
 rename-tab() {
@@ -101,9 +111,7 @@ ipof () {
 	echo $LINE
 }
 
-alias infra-run='ansible-playbook -i inventory/static_inventory'
-
-alias -s 'log=tail -f'
+alias infra='cd /home/francois/dev/recast/infra/ansible'
 
 notif() {
 	$@
@@ -114,6 +122,13 @@ list() {
 	rg $@ | cut -d ':' -f1 | sort | uniq
 }
 
+vim-find() {
+	vim -p `list "${1}"`
+}
+
 man2pdf() {
 	man -t "$1" | ps2pdf - > "$2"
 }
+
+alias doit='`fc -ln -1`'
+alias fucking='sudo '

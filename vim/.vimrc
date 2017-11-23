@@ -20,6 +20,7 @@ set scrolloff=3
 
 autocmd FileType javascript set tabstop=2 softtabstop=0 expandtab shiftwidth=2 nosmarttab
 autocmd FileType ruby set tabstop=2 softtabstop=2 expandtab shiftwidth=2 nosmarttab
+autocmd FileType lua set tabstop=2 softtabstop=2 expandtab shiftwidth=2 nosmarttab
 autocmd FileType python set tabstop=2 softtabstop=2 expandtab shiftwidth=2 nosmarttab
 autocmd FileType eruby set tabstop=2 softtabstop=2 expandtab shiftwidth=2 nosmarttab
 autocmd FileType yaml set tabstop=2 softtabstop=2 expandtab shiftwidth=2 nosmarttab
@@ -101,7 +102,10 @@ Plugin 'mhartington/oceanic-next'
 Plugin 'KeitaNakamura/neodark.vim'
 Plugin 'jacoborus/tender.vim'
 Plugin 'ajh17/Spacegray.vim'
-Plugin 'AlessandroYorba/Alduin'
+Plugin 'cocopon/iceberg.vim'
+Plugin 'beigebrucewayne/hacked_ayu.vim'
+Plugin 'hzchirs/vim-material'
+
 
 nnoremap <C-t> :TagbarToggle<CR>
 
@@ -143,6 +147,7 @@ nnoremap <leader>g mmMmngg=G`nzz`m
 nnoremap <leader>n :noh<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>x :x<CR>
+nnoremap !! :!
 nnoremap ; :
 nnoremap : ;
 vnoremap ; :
@@ -186,7 +191,8 @@ let g:gruvbox_bold=1
 let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark = 'hard'
 let g:alduin_Shout_Contract_Vampirism=1
-colorscheme alduin
+let g:alduin_Shout_Animal_Allegiance = 1
+colorscheme gruvbox
 
 " hi Normal ctermbg=NONE
 
@@ -264,12 +270,16 @@ let g:ale_lint_on_save = 1
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-let g:ale_linters = {'rust': ['cargo']}
-let g:ale_cargo_use_check = 1
+let g:ale_linters = { 'rust': ['cargo'], 'python': ['flake8', 'mypy'], 'c': ['gcc'] }
+let g:ale_rust_cargo_use_check = 1
 let g:ale_python_mypy_options = '--ignore-missing-imports'
+let g:ale_c_gcc_options = '-I includes -I libft/includes -I ../libft/includes -I ../common/includes'
 
 " Auto close quickfix buffer when it's the last open buffer
 aug QFClose
   au!
   au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 aug END
+
+" set notermguicolors
+" hi Normal ctermbg=NONE

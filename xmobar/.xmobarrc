@@ -3,9 +3,8 @@ Config {
      font =         "xft:Iosevka:size=9"
    , bgColor =      "#1D2021"
    , fgColor =      "#ebdbb2"
+   -- , position =     Top
    , position =     TopW L 95 H 25
-   , border =       BottomB
-   , borderColor =  "#1D2021"
 
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
@@ -90,3 +89,4 @@ Config {
         ]
 
    }
+-- vim:ft=haskell

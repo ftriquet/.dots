@@ -41,7 +41,7 @@ green = "#a1b56c"
 blue = "#7cafc2"
 white = "#d8d8d8"
 
-myNormalBorderColor = background
+myNormalBorderColor = "#282828"
 myBorderWidth   = 3
 myFocusedBorderColor = red
 
@@ -236,6 +236,7 @@ manageScratchpad = namedScratchpadManageHook myScratchpads
 myManageHook = composeAll
     [ className =? "Pcmanfm"                      --> doFloat
     , className =? "Nemo"                         --> doFloat
+    , className =? "Qemu-system-x86_64"           --> doFloat
     , resource  =? "desktop_window"               --> doIgnore
     , className =? "Xmessage"                     --> doFloat
     , className =? "Gimp"                         --> doFloat
@@ -270,8 +271,13 @@ myLogHook xmproc = dynamicLogWithPP xmobarPP
 
 myStartupHook = do
     setWMName "LG3D"
-    spawn "start-trayer.sh"
-    spawn "feh --bg-scale /home/francois/Pictures/1D2021.png"
+    -- spawn "start-trayer.sh"
+    spawn "feh --bg-tile /home/francois/Pictures/nami.png"
+
+
+------------------------------------------------------------------------
+-- Toggle bar visibility
+toggleStrutsKey XConfig {XMonad.modMask = myModMask} = (myModMask, xK_b)
 
 ------------------------------------------------------------------------
 myConfig xmproc = (defaults xmproc) `additionalKeysP` addKeys
